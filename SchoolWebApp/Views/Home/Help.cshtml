@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Help";
+}
+<h1>@ViewData["Title"] - Introduction & How to use this app</h1>
+
+<p>
+    jirkuc <img src="~/img/swa.svg" alt="jirkuc SchoolWebApp logo" width="20" /> SchoolWebApp is a simple web based school information system to keep track of students, school subjects and grades.
+</p>
+<p>
+    To use this app <a asp-area="" asp-controller="Home" asp-action="Index">log-in</a> either as:
+    <ul>
+        <li>
+            student (username: petr)<br />
+            - rights to view student, subject and grade data only;
+        </li>
+        <li>
+            teacher (username: jecmen)<br />
+            - rights to view and edit student, subject and grade data;
+        </li>
+        </li>
+        <li>
+            admin (username: admin)<br />
+            - rights to view and edit student, subject and grade data;<br />
+            - rights to view and edit application user and role data.
+        </li>
+    </ul>
+    The password consists of the first four letters of the alphabet (with the first letter capitalised), the first four digits (starting with 1) and period at the end.
+</p>
+<p>
+    The application was created as a learning project during the
+    <a href="https://kurzy.vsb.cz/rekval-kurzy/programovani.php" target="_blank">Object Oriented Programming course on VŠB-TU Ostrava</a>
+    using ASP.NET Core MVC, Entity Framework (to deal with the data stored in Azure SQL database) and Identity Framework (for an app-user
+    authentication and authorization).
+</p>
+

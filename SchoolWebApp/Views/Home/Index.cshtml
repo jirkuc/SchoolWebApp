@@ -1,0 +1,17 @@
+﻿@model string
+@{
+    ViewData["Title"] = "jirkuc SchoolWebApp Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @(char.ToUpper(Model[0]) + Model.Substring(1).ToLower())</h1>
+    <p>
+    <img src="~/img/swa.svg" alt="jirkuc SchoolWebApp logo" width="150" class="mt-4" />
+    </p>    
+    <p>
+        Students, subjects, grades - all in one place...
+    </p>
+    @if (User?.Identity?.IsAuthenticated ?? false) {
+        <a asp-controller="Account" asp-action="Logout" class="btn btn-danger my-2">Logout</a>
+    }
+</div>

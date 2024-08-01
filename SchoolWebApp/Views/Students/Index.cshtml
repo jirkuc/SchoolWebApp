@@ -1,0 +1,30 @@
+﻿@using SchoolWebApp.DTO
+@model IEnumerable<StudentDTO>
+@{
+    ViewData["Title"] = "Students";
+}
+<h1>List of @ViewData["Title"]</h1>
+@if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Teacher"))) {
+    <form method="post" enctype="multipart/form-data" asp-action="Upload" asp-controller="UploadFiles">
+        <div class="form-group my-2">
+            <input type="file" name="fileToUpload" />
+            <input type="submit" value="Upload" />
+        </div>
+    </form>
+    <a class="btn btn-info" asp-action="Create">Add Student</a>
+}
+@foreach (var student in Model) {
+    <div class="border rounded-2 border-dark my-2 p-2">
+        <h5>@student.FirstName @student.LastName</h5>
+        <p>
+            Id: <strong>@student.Id</strong> / Date of Birth: <strong>@student.DateOfBirth.ToShortDateString()</strong>
+        </p>
+        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Teacher"))) {
+            <form method="post">
+                <a class="btn btn-warning my-1 me-1" asp-action="Update" asp-route-id="@student.Id">Update</a>
+                <button type="submit" class="btn btn-danger my-1 ms-1" asp-action="Delete" asp-route-id="@student.Id">Delete</button>
+            </form>
+        }
+    </div>
+}
+

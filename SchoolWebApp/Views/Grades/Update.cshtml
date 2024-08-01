@@ -1,0 +1,30 @@
+﻿@using SchoolWebApp.DTO
+@model GradeDTO;
+@{
+    ViewData["Title"] = "Update Grade";
+}
+<h1>@ViewData["Title"]</h1>
+<a asp-action="Index" class="btn btn-secondary my-2">Back</a>
+<div>
+    <form asp-action="Update" method="post">
+        <div class="form-group">
+            <label class="control-label" asp-for="StudentId"></label>
+            <select class="form-control" asp-for="StudentId" asp-items="ViewBag.Students"></select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" asp-for="SubjectId"></label>
+            <select class="form-control" asp-for="SubjectId" asp-items="ViewBag.Subjects"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Topic">Topic:</label>
+            <input type="text" asp-for="Topic" placeholder="What was examined" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" asp-for="Mark"></label>
+            <input type="number" asp-for="Mark" min="1" max="5" placeholder="Mark" class="form-control" />
+        </div>
+        <div>
+            <input class="btn btn-success my-2" type="submit" value="Update" />
+        </div>
+    </form>
+</div>

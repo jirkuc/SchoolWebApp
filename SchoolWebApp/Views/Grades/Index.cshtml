@@ -1,0 +1,24 @@
+﻿@using SchoolWebApp.ViewModels
+@model IEnumerable<GradesViewModel>
+@{
+    ViewData["Title"] = "Grades";
+}
+<h1>List of @ViewData["Title"]</h1>
+@if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Teacher"))) {
+    <a class="btn btn-info my-2" asp-controller="Grades" asp-action="Create">Award Grade</a>
+}
+@foreach (var item in Model) {
+    <div class="border rounded-2 border-dark my-2 p-2">
+        <p>Student: <strong>@item.StudentName</strong></p>
+        <p>
+            <strong>@item.Mark</strong> - @item.SubjectName (@item.Topic) /
+            @item.Date.ToShortDateString()
+        </p>
+        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Teacher"))) {
+            <form method="post">
+                <a class="btn btn-warning my-1 me-1" asp-controller="Grades" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                <button type="submit" class="btn btn-danger my-1 ms-1" asp-controller="Grades" asp-action="Delete" asp-route-id="@item.Id">Delete</button>
+            </form>
+        }
+    </div>
+}
